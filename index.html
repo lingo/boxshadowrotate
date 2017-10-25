@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        html,body {
+          width:     100%;
+          position:  relative;
+          height:    100%;
+          font-size: 16px;
+          padding:   4rem;
+        }
+
+        .item {
+          background-color: white;
+          border:           1px solid black;
+          display:          inline-block;
+          margin-left: 10%;
+          position:         relative;
+          padding:          3rem;
+          box-shadow:       20px 60px 20px -10px rgba(0,0,0, 0.7);
+          position:         relative;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="item">Box-shadow adjusted for rotation</div>
+    <div class="item">Box shadow by CSS only</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="dist/rotatedBoxShadow.jquery.min.js"></script>
+    <script>
+      $('.item:first').rotateBoxShadow();
+      // var shadow = new RotatedBoxShadow(document.querySelector(".item"));
+      var item   = document.querySelector('.item');
+
+      var angle  = 0;
+      requestAnimationFrame(function animate() {
+        angle--;
+        Array.prototype.forEach.call(
+          document.querySelectorAll(".item"),
+          function(x) {
+            x.style.transform =  "rotate(" + -angle + "deg)";
+          });
+        requestAnimationFrame(animate);
+      });
+    </script>
+</body>
+</html>

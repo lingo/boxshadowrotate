@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 20%;
+        }
+        .item {
+            box-shadow: 0 20px 10px -3px rgba(0,0,0, 0.5);
+            transform: rotate(33deg);
+            display: inline-block;
+            border: 1px solid red;
+            padding: 0.5em;
+        }
+        .item--hover {
+          box-shadow: 0px 20px 60px -10px red;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">This is rotated, but box shadow is always below</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="dist/rotatedBoxShadow.jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.item')
+            .rotatedBoxShadow()
+            .on('mouseenter', function() {
+                $(this).addClass('item--hover')
+                    .rotatedBoxShadow('reloadCSS');
+            })
+            .on('mouseleave', function() {
+                $(this).removeClass('item--hover')
+                    .rotatedBoxShadow('reloadCSS');
+            });;
+        });
+    </script>
+</body>
+</html>
